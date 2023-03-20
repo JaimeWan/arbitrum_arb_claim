@@ -1,8 +1,3 @@
-# arbitrum_arb_claim
-
-
-# arbitrum_arb_claim
-
 
 # arb  空投领取脚本
 
