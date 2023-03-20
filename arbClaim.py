@@ -8,16 +8,11 @@ abi={
 }
 
 
-datas = [
-    {
-        "address": "地址1",
-        "private_key": "私钥1"
-    },
-    {
-        "address": "地址2",
-        "private_key": "私钥2"
-    },
-]
+datas =[]
+with open("./keys.json",'r',encoding='utf8') as fp:
+   datas = json.load(fp)
+
+print(datas)
 
 web3 = Web3(HTTPProvider("https://arb1.arbitrum.io/rpc"))
 
@@ -72,7 +67,8 @@ def claim(address,private_key,gasLimit=500000,flag=True):
 tx_hash_list=[]
 
 for i in datas:
- tx_hash = claim(i["address"],i["private_key"])
+ 
+ tx_hash = claim(i["address"],i["private_key"],gasLimit=500001,flag=False)
  tx_hash_list.append({"address":i["address"],"tx_hash":tx_hash})
 
 print(json.dumps(tx_hash_list,indent=4,ensure_ascii=False))
@@ -82,11 +78,3 @@ with open("result.json", "w", encoding="utf-8") as f:
     f.write(json.dumps(tx_hash_list, indent=4, ensure_ascii=False))
 
 print("执行完成")
-
-
-
- 
-
-
-
-
